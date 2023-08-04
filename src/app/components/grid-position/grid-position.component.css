@@ -1,0 +1,19 @@
+
+.grid-position {
+  --position-diameter: 45px;
+  border-radius: calc(var(--position-diameter) / 2);
+  width: var(--position-diameter);
+  height: var(--position-diameter);
+}
+
+.player1Occupying {
+  background-color: red;
+}
+
+.player2Occupying {
+  background-color: black;
+}
+
+.notUsed {
+  background-color: tan;
+}
