@@ -1,4 +1,4 @@
 export interface Player {
-  player: 1|2,
+  player: "player1"| "player2",
   positions: number[]
 }

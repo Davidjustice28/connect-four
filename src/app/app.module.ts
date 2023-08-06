@@ -7,6 +7,8 @@ import { GridPositionComponent } from './components/grid-position/grid-position.
 import { GamegridComponent } from './components/gamegrid/gamegrid.component';
 import { ColumnButtonComponent } from './components/column-button/column-button.component';
 import { ColumnButtonsSectionComponent } from './components/column-buttons-section/column-buttons-section.component';
+import { CommonModule } from '@angular/common';
+import { ResetButtonComponet } from './components/reset-button/reset-button.component';
 
 @NgModule({
   declarations: [
@@ -14,11 +16,13 @@ import { ColumnButtonsSectionComponent } from './components/column-buttons-secti
     GridPositionComponent,
     GamegridComponent,
     ColumnButtonComponent,
-    ColumnButtonsSectionComponent
+    ColumnButtonsSectionComponent,
+    ResetButtonComponet
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    CommonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

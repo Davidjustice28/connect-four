@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { GridPosition } from '../../_types/grid.types';
 import { PositionsService } from '../../services/positions.service';
 @Component({
@@ -11,10 +11,17 @@ import { PositionsService } from '../../services/positions.service';
   styleUrls: ['./gamegrid.component.css']
 })
 export class GamegridComponent {
+  @Input() gridPositions!: GridPosition;
   positions: GridPosition[] = [];
   positionService = inject(PositionsService)
   constructor() {
     this.positions = this.positionService.getAllPositions();
+  }
+  
+
+
+  resetGameGrid() {
+    this.positionService.getAllPositions()
   }
 }
 
