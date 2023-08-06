@@ -1,6 +1,7 @@
 import { Component, Input, inject } from '@angular/core';
 import { GridPosition } from '../../_types/grid.types';
 import { PositionsService } from '../../services/positions.service';
+import { UsersService } from 'src/app/services/users.service';
 @Component({
   selector: 'app-gamegrid',
   template: `
@@ -14,14 +15,16 @@ export class GamegridComponent {
   @Input() gridPositions!: GridPosition;
   positions: GridPosition[] = [];
   positionService = inject(PositionsService)
+  userService = inject(UsersService)
   constructor() {
     this.positions = this.positionService.getAllPositions();
   }
   
-
-
   resetGameGrid() {
-    this.positionService.getAllPositions()
+    this.positionService.resetPositionData()
+    this.userService.resetPlayersPositions()
+    this.positions = this.positionService.getAllPositions()
+    console.log("reset grid")
   }
 }
 

@@ -33,7 +33,7 @@
 
 @media screen and (max-width: 600px ){ 
   #game-grid {
-    width: min(500px, 90%);
+    width: min(500px, 80%);
     height: 200px;
   }
 }

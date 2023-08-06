@@ -40,6 +40,7 @@ export class PositionsService {
     }
     this.generateWinningRowCombinations(); 
     this.generateWinningColumnCombinations();
+    this.generateWinningDiagnoalCombinations();
     return(positions);
   }
 
@@ -81,7 +82,18 @@ export class PositionsService {
         combinations.push(combination.reverse());
       }
     }
-    this.winningCombinations = this.winningCombinations.concat(combinations)
+    this.winningCombinations = this.winningCombinations.concat(combinations);
+  }
+
+  generateWinningDiagnoalCombinations() {
+    const combinations: Array<Array<number>> = [
+      [14,22,30,38], [7,15,23,31], [15,23,31,39], [0,8,16,24], [8,16,24,32], [16,24,32,40],
+      [1,9,17,25,33], [9,17,25,33], [17,25,33,41], [2,10,18,26], [10,18,26,34], [3,11,19,27],
+      [20,26,32,38], [13,19,25,31], [19,25,31,37], [6,12,18,24], [12,18,24,30], [18,24,30,36],
+      [5,11,17,23], [11,17,23,29], [17,23,29,35], [4,10,16,22], [10,16,22,28], [3,9,15,21]
+    ]
+    this.winningCombinations = this.winningCombinations.concat(combinations);
+
   }
   
   checkIfPlayerWon(positions: Array<number>): boolean {
