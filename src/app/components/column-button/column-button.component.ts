@@ -26,7 +26,8 @@ export class ColumnButtonComponent implements OnInit {
   userService = inject(UsersService)
   whoseTurn!: "player1"|"player2"
   constructor() {
-    this.positions = this.positionService.getAllPositions();
+    // this.positionService.getAllPositions();
+    this.positionService.positionsSource.subscribe(positions => this.positions = positions)
     this.columns = this.columnService.columns
   }
 
@@ -42,7 +43,6 @@ export class ColumnButtonComponent implements OnInit {
       buttonIndex = this.handlePickingRandomIndexForComputer()
     }
     const column: Column = this.columns[buttonIndex];
-    //console.log({columnIndex: buttonIndex, columnPositions: column.positions});
     console.log(`${this.whoseTurn}'s turn`)
     let nextPositionAvailableInColumn: number|null = null;
     let bottomPositionIndex:number = column.positions.length - 1;
@@ -50,7 +50,6 @@ export class ColumnButtonComponent implements OnInit {
       const positionIndex = column.positions[n];
       if(!this.positions[positionIndex].used) {
         nextPositionAvailableInColumn = positionIndex;
-        // console.log({nextPositionAvailableInColumn});
 
         const positionUpdateProps: PositionUpdate = {
           used:true,

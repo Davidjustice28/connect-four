@@ -1,20 +1,30 @@
-import { Injectable, inject } from '@angular/core';
+import { Injectable, inject, OnInit } from '@angular/core';
 import { GridPosition, PositionUpdate } from '../_types/grid.types';
 import { ColumnPositionService } from './column-positions.service';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class PositionsService {
-  protected positions: GridPosition[] = []
+export class PositionsService implements OnInit {
   winningCombinations: Array<Array<number>> = [];
   columnService = inject(ColumnPositionService);
+  positionsSource = new BehaviorSubject<GridPosition[]>([])
+  protected positions: GridPosition[] = []
   constructor() {
+    this.positionsSource.next(this.generateInitialPositions())
     this.positions = this.generateInitialPositions()
   }
 
+  ngOnInit(): void {
+    this.positionsSource.subscribe(positions => this.positions = positions)
+  }
+
+
   resetPositionData(): void {
-    this.positions = this.generateInitialPositions();
+    const newPositions = this.generateInitialPositions()
+    this.positionsSource.next(newPositions)
+    this.positionsSource.getValue().forEach(p => console.log(p))
   }
   getAllPositions(): GridPosition[] {
     return(this.positions);
@@ -24,7 +34,8 @@ export class PositionsService {
     let positionToUpdate = this.positions.find(position=> position.index === index);
     if(positionToUpdate) {
       positionToUpdate= {...updateProps, index};
-      this.positions.splice(index, 1, positionToUpdate);
+      this.positions.splice(index, 1, positionToUpdate);    
+      this.positionsSource.next(this.positions)
     }
   }
 

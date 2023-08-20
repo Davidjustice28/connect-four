@@ -9,6 +9,7 @@ import { ColumnButtonComponent } from './components/column-button/column-button.
 import { ColumnButtonsSectionComponent } from './components/column-buttons-section/column-buttons-section.component';
 import { CommonModule } from '@angular/common';
 import { ResetButtonComponet } from './components/reset-button/reset-button.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { ResetButtonComponet } from './components/reset-button/reset-button.comp
     GamegridComponent,
     ColumnButtonComponent,
     ColumnButtonsSectionComponent,
-    ResetButtonComponet
+    ResetButtonComponet,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

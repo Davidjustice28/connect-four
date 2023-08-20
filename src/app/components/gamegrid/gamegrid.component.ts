@@ -17,13 +17,14 @@ export class GamegridComponent {
   positionService = inject(PositionsService)
   userService = inject(UsersService)
   constructor() {
-    this.positions = this.positionService.getAllPositions();
+    // this.positions = this.positionService.getAllPositions();
+    this.positionService.positionsSource.subscribe(positions => this.positions = positions)
   }
   
   resetGameGrid() {
     this.positionService.resetPositionData()
     this.userService.resetPlayersPositions()
-    this.positions = this.positionService.getAllPositions()
+    // this.positions = this.positionService.getAllPositions()
     console.log("reset grid")
   }
 }
